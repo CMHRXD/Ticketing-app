@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-depl
+
+spec: # spec is the specification of the deployment
+  replicas: 1 # number of pods
+  selector:
+    matchLabels: # the selector is used to match the labels of the pod
+      app: auth # the label of the pod
+  template: # the template is the pod
+    metadata:
+      labels:
+        app: auth # the label of the pod
+    spec: 
+      containers: # the containers of the pod
+        - name: auth # the name is for logging purposes
+          image: cmhr007/ticketing-auth  # your docker image
+          imagePullPolicy: Never # if you want to use a specific version, you can add :0.0.1 at the end
+          env:
+            - name: JWT_SECRET # this is name inside the container that will be used to access the value
+              valueFrom:
+                secretKeyRef: # this is the reference to the secret in k8s | this is the way to access the secret "kubectl get secret"
+                  name: secret-key # the name of the secret that we created in k8s
+                  key: JWT_SECRET # the key of the secret that we created in k8s
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-srv
+spec:
+  selector:
+    app: auth
+  ports:
+    - name: auth
+      port: 4000  # the port of the service
+      targetPort: 4000 # the port of the container to be exposed

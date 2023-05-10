@@ -1,0 +1,64 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests: #Apply all the files in the directory and delete the ones that are not in the directory
+      - ./infra/k8s/*.yaml
+build:
+  local:
+    push: false
+  artifacts:
+    - image: cmhr007/ticketing-auth # the name of the image that will be created
+      context: auth # the directory where the Dockerfile is located
+      docker:
+        dockerfile: Dockerfile # the name of the Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts' # the files to be watched for changes
+            dest: . # the destination of the files
+
+    - image: cmhr007/ticketing-expiration # the name of the image that will be created
+      context: expiration # the directory where the Dockerfile is located
+      docker:
+        dockerfile: Dockerfile # the name of the Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts' # the files to be watched for changes
+            dest: . # the destination of the files
+
+    - image: cmhr007/ticketing-tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts' # the files to be watched for changes
+            dest: .
+            
+    - image: cmhr007/ticketing-orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts' # the files to be watched for changes
+            dest: .
+      
+    - image: cmhr007/ticketing-payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts' # the files to be watched for changes
+            dest: .
+
+    - image: cmhr007/ticketing-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.jsx' # the files to be watched for changes
+            dest: .
+    

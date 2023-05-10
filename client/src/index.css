@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.bubble{
+    animation: move-bubble 5s ease-in-out infinite;
+    transform: translateY(0);
+}
+
+@keyframes move-bubble {
+    to {
+        transform: translateY(-100%);
+    }
+}
