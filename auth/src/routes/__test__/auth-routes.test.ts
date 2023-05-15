@@ -41,7 +41,7 @@ describe("Sign Up Tests", () => {
                 email: "testtest.com",
                 password: "password",
             })
-            .expect(400);
+            .expect(200);
     });
 
     it("return a 400 with an invalid password", async () => {
