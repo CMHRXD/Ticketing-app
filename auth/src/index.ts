@@ -15,5 +15,5 @@ envCheck();
 connection();
 
 app.listen(PORT, () => {
-  console.log(`Auth-Service listening on: \n\tHOST:${HOST}  \n\tPORT:${PORT}`);
+  console.log(`Auth-Service listening on: \n\tHOST:${HOST} \n\tPORT:${PORT}`);
 });
