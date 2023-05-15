@@ -1,4 +1,3 @@
-//App 
 import { app } from "./app";
 //Mongo DB Connection
 import { connection } from "./config/mongoDB";
