@@ -22,6 +22,6 @@ natsInitConnection();
 
 app.listen(PORT, () => {
   console.log(
-    `Ticket-Service listening on: \n\tHOST:${HOST}  \n\tPORT:${PORT}`
+    `Ticket-Service listening on: \n\tHOST:${HOST} \n\tPORT:${PORT}`
   );
 });
