@@ -20,7 +20,6 @@ app.use(
     secure: process.env.NODE_ENV !== 'test', // only use cookies over https
   })
 );
-
 //process.env.NODE_ENV !== 'test' : this is to allow the cookie to be sent over http when testing
 
 //ROUTES
@@ -33,6 +32,5 @@ app.all("*", () => {
 
 //Middlewares
 app.use(errorHandler); // Error Handler
-
 
 export {app}

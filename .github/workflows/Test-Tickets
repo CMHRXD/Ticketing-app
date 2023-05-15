@@ -1,4 +1,4 @@
-name: "Test"
+name: "Test-Tickets"
 
 on:
   pull_request
@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.5.2
-      - run: cd auth && npm install && npm run test:ci
+      - run: cd tickets && npm install && npm run test:ci
