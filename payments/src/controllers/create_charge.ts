@@ -24,7 +24,6 @@ export const createCharge = async (req: Request, res: Response) => {
   if (order.status === OrderStatus.Complete) throw new BadRequestError("Cannot pay for a completed order");
 
   // if all the above conditions are met, send a request to stripe to create a charge
-
   try {
     const charge = await stripe.charges.create({
       currency: "usd",
