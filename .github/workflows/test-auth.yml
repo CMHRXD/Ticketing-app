@@ -1,7 +1,9 @@
 name: "Test-Auth"
 
 on:
-  pull_request
+  pull_request:
+    paths:
+      - "auth/**"
   
 jobs:
   build:
