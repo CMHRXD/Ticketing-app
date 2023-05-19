@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.2
       - run: cd auth && docker build -t cmhr007/ticketing-auth .
-      - run: docker login -u $DOCKER_USERNAME $DOCKER_PASSWORD
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
