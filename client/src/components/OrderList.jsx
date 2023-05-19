@@ -60,7 +60,6 @@ const OrderList = () => {
 
   useEffect(() => {
     getOrders();
-    console.log(orders);
   }, []);
 
   return (

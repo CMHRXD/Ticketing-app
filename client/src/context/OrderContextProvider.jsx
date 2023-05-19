@@ -48,7 +48,6 @@ export const OrderContextProvider = ({ children }) => {
   const getOrders = async () => {
     try {
       const { data } = await AxiosClient.get("/orders");
-      console.log(data);
       setOrders(data);
     } catch (error) {
       const errorMessage = handleRequestErrors(error);

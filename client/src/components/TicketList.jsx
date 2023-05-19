@@ -82,17 +82,19 @@ const TicketList = () => {
 
   if (tickets.length === 0) {
     return (
-      <h1 className="text-4xl text-gray-700 font-bold">
-        There are not tickets yet, please create one to sell it :)
-      </h1>
+      <div className="flex items-center justify-center gap-5 m-5">
+        <h1 className="text-4xl text-gray-700 font-bold">
+          There are not tickets yet, please create one to sell it :)
+        </h1>
+      </div>
     );
   }
 
   return (
-    <div className="container max-w-[600px] shadow-md bg-white sm:rounded-lg ">
+    <div className="container max-w-[600px] shadow-md bg-white sm:rounded-lg">
       <div className="flex flex-col items-center w-auto">
         <h1 className="text-center text-4xl font-bold text-blue-400 my-4">
-          Listado de Tickets
+          List of Tickets
         </h1>
         <GloablFilter
           filter={globalFilter}
@@ -156,17 +158,6 @@ const TicketList = () => {
               );
             })}
           </tbody>
-          {/*<tfoot>
-{footerGroups.map(footerGroup => (
-  <tr {...footerGroup.getFooterGroupProps()}>
-      {footerGroup.headers.map(column => (
-          <td className="px-6 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700" {...column.getFooterProps()}>
-              {column.render('Footer')} 
-          </td>
-      ))}
-  </tr>
-))}
-</tfoot>*/}
         </table>
         {/*Pagination*/}
         <div className="flex flex-row justify-between">
