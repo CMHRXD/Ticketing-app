@@ -30,8 +30,6 @@ app.all("*", () => {
   throw new NotFoundError();
 });
 
-
-
 //Middlewares
 app.use(errorHandler); // Error Handler
 
