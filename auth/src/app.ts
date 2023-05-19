@@ -25,6 +25,7 @@ app.use(
 //ROUTES
 app.use(authRoutes);
 
+
 // Not found route
 app.all("*", () => {
   throw new NotFoundError();
