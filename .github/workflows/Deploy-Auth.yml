@@ -18,3 +18,9 @@ jobs:
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       - run: docker push cmhr007/ticketing-auth
+      - uses: digitalocean/action-doctl@v2.3.0
+        with:
+          token: ${{secrets.DO_TOKEN}}
+      - run: doctl kubernates cluster kubeconfig save ticketing
+      - run: kubectl rollout restart deployment auth-depl
+        
