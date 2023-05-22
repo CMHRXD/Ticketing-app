@@ -8,3 +8,4 @@ envCheck();
 
 // Connect to NATS
 natsInitConnection();
+
