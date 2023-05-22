@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true" # This is to enable regex in the ingress
 spec:
   rules:
-    - host: ticketing-app.dev
+    - host: ticketing-app.com
       http:
         paths:
           - path: /api/users/?(.*)
