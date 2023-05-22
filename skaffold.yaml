@@ -3,7 +3,6 @@ kind: Config
 deploy:
   kubectl:
     manifests: #Apply all the files in the directory and delete the ones that are not in the directory
-      - ./infra/k8s/*.yaml
       - ./infra/k8s/dev/*.yaml
 build:
   local:
