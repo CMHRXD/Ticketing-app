@@ -1,0 +1,25 @@
+name: Deploy-Expiration
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'expiration/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - run: cd expiration && docker build -t cmhr007/ticketing-expiration .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      - run: docker push cmhr007/ticketing-expiration
+      - uses: digitalocean/action-doctl@v2.3.0 # login to digital ocean
+        with:
+          token: ${{secrets.DO_TOKEN}} # digital ocean token
+      - run: doctl kubernates cluster kubeconfig save ticketing # save the kubeconfig file
+      - run: kubectl rollout restart deployment expiration-depl # restart the deployment

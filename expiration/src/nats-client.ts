@@ -1,6 +1,7 @@
 import nats, { Stan } from "node-nats-streaming";
 
 class NatsClient {
+  
   private _client?: Stan;
 
   get client() {

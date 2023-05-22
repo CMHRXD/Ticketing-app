@@ -19,6 +19,7 @@ mongoDBConnection();
 //Connect to NATS
 natsInitConnection()
 
+//Start the server
 app.listen(PORT, () => {
   console.log(
     `Ticket-Service listening on: \n\tHOST:${HOST}  \n\tPORT:${PORT}`

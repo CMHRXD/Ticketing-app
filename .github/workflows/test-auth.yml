@@ -1,13 +1,13 @@
 name: "Test-Auth"
 
-on:
-  pull_request:
-    paths:
-      - "auth/**"
+on: # when to run the workflow
+  pull_request: # when a pull request event occurs
+    paths: # when the pull request event occurs on the following paths 
+      - "auth/**" # only when the pull request event occurs on the auth folder
   
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3.5.2
-      - run: cd auth && npm install && npm run test:ci
+  build: # build job 
+    runs-on: ubuntu-latest # the type of machine to run the job on
+    steps: # the steps to run in the job
+      - uses: actions/checkout@v3.5.2 # checkout the files in the repo to the runner machine
+      - run: cd auth && npm install && npm run test:ci # install dependencies and run tests

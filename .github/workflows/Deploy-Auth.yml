@@ -1,20 +1,26 @@
-name: deploy-auth
+name: Deploy-Auth
 
-on:
-  push:
-    branches:
-      - master
+on: # when to run the workflow
+  push: # when a push event occurs
+    branches: # when the push event occurs on the following branches
+      - master # only when the push event occurs on the master branch
     paths:
-      - 'auth/**'
+      - 'auth/**' # only when the push event occurs on the auth folder
       
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3.5.2
-      - run: cd auth && docker build -t cmhr007/ticketing-auth .
-      - run: docker login -u $DOCKER_USERNAME $DOCKER_PASSWORD
+jobs: # the jobs to run
+  build: # build job
+    runs-on: ubuntu-latest  # the type of machine to run the job on
+    steps: # the steps to run in the job
+      - uses: actions/checkout@v3.5.2 # checkout the files in the repo to the runner machine
+      - run: cd auth && docker build -t cmhr007/ticketing-auth . # build the image
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD # login to docker hub
         env:
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      - run: docker push cmhr007/ticketing-auth
+      - run: docker push cmhr007/ticketing-auth # push the image to docker hub
+      - uses: digitalocean/action-doctl@v2.3.0 # login to digital ocean
+        with:
+          token: ${{secrets.DO_TOKEN}} # digital ocean token
+      - run: doctl kubernates cluster kubeconfig save ticketing # save the kubeconfig file
+      - run: kubectl rollout restart deployment auth-depl # restart the deployment
+        

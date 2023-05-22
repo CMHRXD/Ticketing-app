@@ -45,6 +45,7 @@ export const OrderContextProvider = ({ children }) => {
       swal(errorMessage.errorType, errorMessage.msg, "error");
     }
   };
+  
   const getOrders = async () => {
     try {
       const { data } = await AxiosClient.get("/orders");

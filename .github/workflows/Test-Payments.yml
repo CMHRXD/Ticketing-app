@@ -1,13 +1,13 @@
 name: "Test-Payments"
 
-on:
-  pull_request:
-    paths:
-      - "payments/**"
+on: # when to run the workflow
+  pull_request: # when a pull request event occurs
+    paths: # when the pull request event occurs on the following paths
+      - "payments/**" # only when the pull request event occurs on the payments folder
   
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3.5.2
-      - run: cd payments && npm install && npm run test:ci
+jobs: # the jobs to run
+  build: # build job
+    runs-on: ubuntu-latest # the type of machine to run the job on
+    steps: # the steps to run in the job
+      - uses: actions/checkout@v3.5.2 # checkout the files in the repo to the runner machine
+      - run: cd payments && npm install && npm run test:ci # install dependencies and run tests
