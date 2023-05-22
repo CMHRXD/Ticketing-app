@@ -7,6 +7,7 @@ import { envCheck } from "@cmhrtools/common/build";
 //NATS connection
 import { natsInitConnection } from "./config";
 
+
 const PORT = process.env.PORT || 4002;
 const HOST = process.env.HOST || "";
 
