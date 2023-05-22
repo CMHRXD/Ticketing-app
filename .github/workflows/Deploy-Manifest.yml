@@ -5,7 +5,8 @@ on:
     branches:
       - master
     paths:
-      - 'infra/k8s/**/*'
+      - 'infra/k8s/**'
+      - 'infra/k8s/dev/**'
 
 jobs:
   build:
