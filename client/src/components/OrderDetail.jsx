@@ -66,7 +66,7 @@ const OrderDetail = () => {
           {order.status !== "complete" ? (
             <StripeCheckout
               token={(token) => payOrder(order.id, token.id)}
-              stripeKey={import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY}
+              stripeKey={process.env.STRIPE_TEST}
               amount={order.ticket.price * 100}
               email={user.email}
             >

@@ -10,6 +10,6 @@ export default defineConfig({
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
   define: {
-    'process.env.STRIPE_TEST': 'pk_test_51MyC4IGmrvuw1mJ4vKgobsp14daeGSK5oP8ilL4jMX1VEsQFEyWgGqJIGFFYDMU7XyQEmTWJBHyN2diIZFihJg7G00jZpOOuS5',
+    'process.env.STRIPE_TEST': JSON.stringify('pk_test_51MyC4IGmrvuw1mJ4vKgobsp14daeGSK5oP8ilL4jMX1VEsQFEyWgGqJIGFFYDMU7XyQEmTWJBHyN2diIZFihJg7G00jZpOOuS5'),
   },
 })
