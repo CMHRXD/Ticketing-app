@@ -17,6 +17,17 @@ spec:
         - name: client
           image: cmhr007/ticketing-client
           imagePullPolicy: Always
+          env:
+            - name: VITE_BACKEND_URL # this is name inside the container that will be used to access the value
+              valueFrom:
+                secretKeyRef: # this is the reference to the secret in k8s | this is the way to access the secret "kubectl get secret"
+                  name: vite-backend-url # the name of the secret that we created in k8s
+                  key: VITE_BACKEND_URL # the key of the secret that we created in k8s
+            - name: VITE_STRIPE_PUBLISHABLE_KEY # this is name inside the container that will be used to access the value
+              valueFrom:
+                secretKeyRef: # this is the reference to the secret in k8s | this is the way to access the secret "kubectl get secret"
+                  name: vite-stripe-key # the name of the secret that we created in k8s
+                  key: VITE_STRIPE_PUBLISHABLE_KEY # the key of the secret that we created in k8s
 
 ---
 apiVersion: v1
