@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expiration-depl
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expiration
+  template:
+    metadata:
+      labels:
+        app: expiration
+    spec:
+      containers:
+        - name: expiration
+          image: cmhr007/ticketing-expiration
+          imagePullPolicy: Always
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: secret-key
+                  key: JWT_SECRET
+            - name: CLUSTER_ID
+              value: "ticketing"
+            - name: NATS_URL
+              value: "nats://nats-srv:4222"
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: REDIS_HOST
+              value: "expiration-redis-srv"
+            - name: MONGO_URI
+              value: 'test'
+
