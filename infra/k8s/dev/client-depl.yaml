@@ -17,7 +17,7 @@ spec:
         - name: client
           image: cmhr007/ticketing-client
           imagePullPolicy: Never
-
+          
 ---
 apiVersion: v1
 kind: Service

@@ -17,7 +17,7 @@ app.use(json()); // to allow express to parse json
 app.use(
   cookieSession({
     signed: false, // disable encryption
-    secure: process.env.NODE_ENV !== 'test', // only use cookies over https
+    secure: false, // only use cookies over https
   })
 );
 
@@ -33,6 +33,5 @@ app.all("*", () => {
 
 //Middlewares
 app.use(errorHandler); // Error Handler
-
 
 export {app}

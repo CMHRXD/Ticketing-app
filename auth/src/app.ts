@@ -17,7 +17,7 @@ app.use(json()); // to allow express to parse json
 app.use(
   cookieSession({
     signed: false, // disable encryption
-    secure: process.env.NODE_ENV !== 'test', // only use cookies over https
+    secure: false, // only use cookies over https
   })
 );
 //process.env.NODE_ENV !== 'test' : this is to allow the cookie to be sent over http when testing
@@ -29,6 +29,7 @@ app.use(authRoutes);
 app.all("*", () => {
   throw new NotFoundError();
 });
+
 
 //Middlewares
 app.use(errorHandler); // Error Handler

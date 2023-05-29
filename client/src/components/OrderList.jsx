@@ -2,55 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import useOrders from "../hooks/useOrders";
 
-// const orders = [
-//   {
-//     id: 1,
-//     titlte: "Ticket 1",
-//     price: 100,
-//     status: "Waiting for payment",
-//     statusStyle: "text-yellow-500",
-//   },
-
-//   {
-//     id: 2,
-//     titlte: "Ticket 2",
-//     price: 200,
-//     status: "Completed",
-//     statusStyle: "text-green-500",
-//   },
-
-//   {
-//     id: 3,
-//     titlte: "Ticket 3",
-//     price: 200,
-//     status: "Completed",
-//     statusStyle: "text-green-500",
-//   },
-
-//   {
-//     id: 4,
-//     titlte: "Ticket 4",
-//     price: 200,
-//     status: "Completed",
-//     statusStyle: "text-green-500",
-//   },
-
-//   {
-//     id: 5,
-//     titlte: "Ticket 5",
-//     price: 200,
-//     status: "Completed",
-//     statusStyle: "text-green-500",
-//   },
-
-//   {
-//     id: 6,
-//     titlte: "Ticket 6",
-//     price: 200,
-//     status: "Completed",
-//     statusStyle: "text-green-500",
-//   },
-// ];
 const OrderList = () => {
   const { orders, getOrders, getOrder } = useOrders();
 
@@ -68,7 +19,6 @@ const OrderList = () => {
         <div className="flex flex-wrap items-center justify-center gap-5">
           {orders.length > 0 ? (
             orders.map((order) => {
-              console.log(order);
               return (
                 <div
                   className="flex-col p-5 shadow-lg shadow-blue-300  bg-white rounded-lg w-full md:w-[500px] bg-[url(./assets/ticket-bg-animation.svg)]"
