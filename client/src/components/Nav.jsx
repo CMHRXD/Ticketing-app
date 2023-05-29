@@ -223,6 +223,7 @@ const Nav = () => {
                     as={Link}
                     to={item.href}
                     className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-900 hover:text-white"
+                    onClick={item.action}
                   >
                     {item.name}
                   </Disclosure.Button>
