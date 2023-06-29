@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuthRequest from "../hooks/useAuthRequest";
 import useUsers from "../hooks/useUsers";
 import ticketImg from "../assets/ticket.svg";
@@ -13,7 +13,6 @@ const Nav = () => {
     { name: "Sell Tickets", href: "/app/ticket-form", current: false },
     { name: "My Orders", href: "/app/orders-list", current: false },
   ]);
-  const navigate = useNavigate();
   const { setUser } = useUsers(); 
   const {authRequest} = useAuthRequest({
     url: "/users/sign-out",
@@ -33,8 +32,8 @@ const Nav = () => {
   };
 
   const userNavigation = [
-    { name: "Your Profile", href: "#" },
-    { name: "Settings", href: "#" },
+    { name: "Your Profile", href: "#", action: () => swal("Info", "Action in development", "info") },
+    { name: "Settings", href: "#", action: () => swal("Info", "Action in development", "info")},
     { name: "Sign out", href: "/sign-in", action: () => authRequest() },
   ];
 
