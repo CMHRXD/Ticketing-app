@@ -13,17 +13,21 @@ export const natsInitConnection = async () => {
     throw new Error("CLUSTER_ID must be defined");
   }
   try {
-    await natsClient.connect(process.env.CLUSTER_ID, process.env.NATS_CLIENT_ID, process.env.NATS_URL);
+    await natsClient.connect(
+      process.env.CLUSTER_ID,
+      process.env.NATS_CLIENT_ID,
+      process.env.NATS_URL
+    );
     //event to close NATS
     natsClient.client.on("close", () => {
       console.log("NATS connection closed!");
+      natsInitConnection();
       process.exit();
     });
     process.on("SIGINT", () => natsClient.client.close()); // SIGINT is used by Node to terminate a process.
     process.on("SIGTERM", () => natsClient.client.close()); // SIGTERM is used by Kubernetes to terminate a pod.
 
     new OrderCreatedListener(natsClient.client).listen();
-
   } catch (error) {
     console.log(error);
   }
