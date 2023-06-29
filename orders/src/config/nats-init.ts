@@ -24,12 +24,13 @@ export const natsInitConnection = async () => {
     //event to close NATS
     natsClient.client.on("close", () => {
       console.log("NATS connection closed!");
+      natsInitConnection();
       process.exit();
     });
 
     process.on("SIGINT", () => natsClient.client.close()); // SIGINT is used by Node to terminate a process.
     process.on("SIGTERM", () => natsClient.client.close()); // SIGTERM is used by Kubernetes to terminate a pod.
-    
+
     //NATS TicketCreated Listener
     new TicketCreatedListener(natsClient.client).listen();
 
@@ -41,7 +42,6 @@ export const natsInitConnection = async () => {
 
     // NATS Payment Listener
     new PaymentCreatedListener(natsClient.client).listen();
-
   } catch (error) {
     console.log(error);
   }
